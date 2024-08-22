@@ -1,0 +1,29 @@
+:root {
+  --primaria-color: #ee6055;
+  --secundaria-color: #ffffff;
+  --terciaria-color: #000000;
+  --background-color: #fff9e7;
+  --quintaria-color: #000000;
+
+  /* text */
+  --text-primary: #ee6055;
+  --text-stroke-primary: #8e3c38;
+  --text-secondary: #d0e6ff;
+  --text-stroke-secondary: #4d82bd;
+
+  /* buttons */
+  --button-primary: #ee6055;
+  --button-primary-stroke: #8e3c38;
+  --button-primary-text: #ffcbc8;
+  --button-primary-text-stroke: #8e3c38;
+
+  --button-secondary: #d0e6ff;
+  --button-secondary-stroke: #4d81bd;
+  --button-secondary-text: #d0e6ff;
+  --button-secondary-text-stroke: #4d82bd;
+
+  /* buttons on hover*/
+  --button-primary-hover: #ee6055;
+
+  --button-secondary-hover: #bbdbff;
+}

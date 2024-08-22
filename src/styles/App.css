@@ -1,0 +1,87 @@
+/* Font Face */
+@font-face {
+  font-family: "Itim";
+  src: url("/src/assets/fonts/Itim-Regular.ttf") format("truetype");
+}
+
+/* Root Container */
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Itim";
+}
+
+/* Header */
+.Header {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  height: 200px;
+  background-color: aqua;
+  width: 100%;
+  padding: 10px;
+}
+
+.Header > h1 {
+  text-align: center;
+  rotate: 5deg;
+  color: var(--text-primary);
+  -webkit-text-stroke: 3px var(--text-stroke-primary);
+  transition: all 0.5s ease-in-out;
+  position: relative;
+}
+
+.Header > h1:hover {
+  rotate: 2deg;
+}
+
+/* Main Application */
+.Main_app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  top: 5rem;
+  transform: translateY(-200px);
+}
+
+/* Logo */
+.logo {
+  height: auto;
+  width: 100px;
+  rotate: -15deg;
+  position: relative;
+
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.logo:hover {
+  rotate: 0deg;
+}
+.app_name {
+  color: var(--text-primary);
+  font-size: 6rem;
+  -webkit-text-stroke: 3px var(--text-stroke-primary);
+}
+
+/* Text Styles */
+.text_stroke {
+  color: var(--text-primary);
+  -webkit-text-stroke: 1px var(--text-stroke-primary);
+}
+
+/* Primary Button */
+
+/* Settings */
+.Settings {
+  transition: all 0.5s ease-in-out;
+}

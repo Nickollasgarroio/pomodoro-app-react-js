@@ -1,0 +1,31 @@
+/* Timer Display */
+.Timer_display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Container */
+.button_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 10px solid var(--primaria-color);
+  height: 20rem;
+  width: 20rem;
+  font-size: 3rem;
+}
+
+.button_container > h1 {
+  font-size: 3rem;
+  rotate: -5deg;
+}
+
+/* Timer Display Text */
+.Timer_display > p {
+  font-size: 2rem;
+}
