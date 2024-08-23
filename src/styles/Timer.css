@@ -1,4 +1,11 @@
 /* Timer Display */
+.Timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .Timer_display {
   display: flex;
   flex-direction: column;
@@ -13,19 +20,48 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 50%;
+  height: min(300px, 400px);
+  width: min(300px, 400px);
+  border-radius: min(200px, 400px);
   border: 10px solid var(--primaria-color);
-  height: 20rem;
-  width: 20rem;
   font-size: 3rem;
-}
-
-.button_container > h1 {
-  font-size: 3rem;
-  rotate: -5deg;
+  margin: 20px;
 }
 
 /* Timer Display Text */
 .Timer_display > p {
-  font-size: 2rem;
+  font-size: 7rem;
+}
+.timer_visor {
+  font-size: 6rem;
+  rotate: 3deg;
+}
+
+.timer_mode {
+  font-size: 4rem;
+  rotate: -5deg;
+  transition: var(--transition-slow);
+}
+.timer_mode:hover {
+  rotate: -8deg;
+}
+
+.btn-timer-change-mode {
+  background-color: var(--button-terciary);
+  color: var(--button-terciary-text);
+  border: 4px solid var(--button-terciary-stroke);
+  font-family: "Itim";
+  width: 150px;
+  height: 60px;
+  font-size: 1.25rem;
+  padding: 10px;
+  border-radius: 35px;
+  margin-top: 10px;
+  cursor: pointer;
+  rotate: 3deg;
+  transition: var(--transition-fast);
+  margin: 20px;
+}
+.btn-timer-change-mode:hover {
+  rotate: -5deg;
 }

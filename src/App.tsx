@@ -1,82 +1,68 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { Timer } from "./components/Timer";
 import { Controls } from "./components/Controls";
 import { Settings } from "./components/Settings";
+import { Header } from "./components/Header";
 import "./styles/App.css";
-import "./styles/styles.css";
-import clickSoundFile from "./assets/sounds/click.wav";
-import alarmSoundFile from "./assets/sounds/alarm_sound.wav";
-import logo_pomopal from "./assets/logos/pomopal-logo.png";
+
+interface TimerContextProps {
+  focusTime: number;
+  setFocusTime: (time: number) => void;
+  breakTime: number;
+  setBreakTime: (time: number) => void;
+  timerIsRunning: boolean;
+  setTimerIsRunning: (isRunning: boolean) => void;
+  timerMode: "Break" | "Focus";
+  setTimerMode: (mode: "Break" | "Focus") => void;
+  handleTimeChange: () => void;
+}
+
+export const TimerContext = createContext<TimerContextProps | null>(null);
 
 function App() {
-  const [timerMode, setTimerMode] = useState<"Break" | "Focus">("Focus");
+  const [focusTime, setFocusTime] = useState<number>(25);
+  const [breakTime, setBreakTime] = useState<number>(5);
   const [timerIsRunning, setTimerIsRunning] = useState<boolean>(false);
-  const [focusTime, setFocusTime] = useState<number>(1); // Valor inicial em minutos
-  const [breakTime, setBreakTime] = useState<number>(1); // Valor inicial em minutos
+  const [timerMode, setTimerMode] = useState<"Break" | "Focus">("Focus");
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
-
-  const toggleTimerIsRunning = () => {
-    setTimerIsRunning((prevState) => !prevState);
-  };
-
-  const playSound = (action: string) => {
-    const clickSound = new Audio(clickSoundFile);
-    clickSound.volume = 0.5;
-    const alarmSound = new Audio(alarmSoundFile);
-    alarmSound.volume = 0.5;
-
-    switch (action) {
-      case "click":
-        clickSound.play();
-        break;
-      case "alarm":
-        alarmSound.play();
-        break;
-      default:
-        break;
-    }
-  };
 
   const handleTimeChange = () => {
     setTimerIsRunning(false);
   };
 
   const handleShowSettings = () => {
-    setSettingsVisible((prev) => !prev);
+    setSettingsVisible(!settingsVisible);
   };
 
   return (
-    <div className="App" onClick={() => playSound("click")}>
-      <div className="Header">
-        <h1 className="app_name">PomoPal</h1>
-        <img src={logo_pomopal} alt="pomopal logo" className="logo" />
+    <TimerContext.Provider
+      value={{
+        focusTime,
+        setFocusTime,
+        breakTime,
+        setBreakTime,
+        timerIsRunning,
+        setTimerIsRunning,
+        timerMode,
+        setTimerMode,
+        handleTimeChange,
+      }}
+    >
+      <div className="App">
+        <Header />
+        <Timer />
+        <Controls toggleSettings={handleShowSettings} />
+        {settingsVisible && (
+          <Settings
+            focusTime={focusTime}
+            setFocusTime={setFocusTime}
+            breakTime={breakTime}
+            setBreakTime={setBreakTime}
+            handleTimeChange={handleTimeChange}
+          />
+        )}
       </div>
-      <div className="Main_app">
-        <Timer
-          timerMode={timerMode}
-          setTimerMode={setTimerMode}
-          timerIsRunning={timerIsRunning}
-          toggleTimerIsRunning={toggleTimerIsRunning}
-          focusTime={focusTime}
-          breakTime={breakTime}
-        />
-        <Controls
-          timerIsRunning={timerIsRunning}
-          toggleTimerIsRunning={toggleTimerIsRunning}
-          toggleSettings={handleShowSettings}
-        />
-      </div>
-      {settingsVisible && (
-        <Settings
-          showSettings={settingsVisible}
-          focusTime={focusTime}
-          setFocusTime={setFocusTime}
-          breakTime={breakTime}
-          setBreakTime={setBreakTime}
-          handleTimeChange={handleTimeChange}
-        />
-      )}
-    </div>
+    </TimerContext.Provider>
   );
 }
 

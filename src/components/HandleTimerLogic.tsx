@@ -52,9 +52,11 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
   const seconds = Math.floor((timeLeft / 1000) % 60);
 
   return (
-    <p>
-      {minutes.toString().padStart(2, "0")}:
-      {seconds.toString().padStart(2, "0")}
-    </p>
+    <div>
+      <p>
+        {minutes.toString().padStart(2, "0")}:
+        {seconds.toString().padStart(2, "0")}
+      </p>
+    </div>
   );
 };

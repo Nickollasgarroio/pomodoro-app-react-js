@@ -1,7 +1,6 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group"; // Correção aqui
 import { SetTimerValue } from "./SetTimerValue";
-import "../styles/Settings.css"; // Importar o CSS correto
+import "../styles/Settings.css";
 
 interface SettingsProps {
   focusTime: number;
@@ -9,7 +8,6 @@ interface SettingsProps {
   breakTime: number;
   setBreakTime: (time: number) => void;
   handleTimeChange: () => void;
-  showSettings: boolean;
 }
 
 export const Settings: React.FC<SettingsProps> = ({
@@ -18,31 +16,23 @@ export const Settings: React.FC<SettingsProps> = ({
   breakTime,
   setBreakTime,
   handleTimeChange,
-  showSettings,
 }) => {
   return (
-    <CSSTransition
-      in={showSettings}
-      timeout={300}
-      classNames={"fade"}
-      unmountOnExit
-    >
-      <div className="Settings_container">
-        <div className="Settings_content">
-          <SetTimerValue
-            setFocusTime={(time: number) => {
-              setFocusTime(time);
-              handleTimeChange();
-            }}
-            setBreakTime={(time: number) => {
-              setBreakTime(time);
-              handleTimeChange();
-            }}
-            focusTime={focusTime}
-            breakTime={breakTime}
-          />
-        </div>
+    <div className="Settings_container">
+      <div className="Settings_content">
+        <SetTimerValue
+          setFocusTime={(time: number) => {
+            setFocusTime(time);
+            handleTimeChange();
+          }}
+          setBreakTime={(time: number) => {
+            setBreakTime(time);
+            handleTimeChange();
+          }}
+          focusTime={focusTime}
+          breakTime={breakTime}
+        />
       </div>
-    </CSSTransition>
+    </div>
   );
 };

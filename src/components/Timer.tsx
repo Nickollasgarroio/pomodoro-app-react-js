@@ -1,41 +1,51 @@
-import { HandleTimerLogic } from "./HandleTimerLogic";
+import { useContext } from "react";
 import "../styles/styles.css";
 import "../styles/Timer.css";
+import { TimerContext } from "../App";
+import { HandleTimerLogic } from "./HandleTimerLogic";
 
-interface TimerProps {
-  timerMode: "Break" | "Focus";
-  setTimerMode: (mode: "Break" | "Focus") => void;
-  timerIsRunning: boolean;
-  toggleTimerIsRunning: () => void;
-  focusTime: number;
-  breakTime: number;
-}
+export const Timer = () => {
+  const timerContext = useContext(TimerContext);
 
-export const Timer: React.FC<TimerProps> = ({
-  timerMode,
-  setTimerMode,
-  timerIsRunning,
-  focusTime,
-  breakTime,
-}) => {
+  if (!timerContext) return null;
+
+  const {
+    focusTime,
+    breakTime,
+    timerIsRunning,
+    setTimerIsRunning,
+    timerMode,
+    setTimerMode,
+  } = timerContext;
+
+  // Função para alternar o estado de timerIsRunning
+  const toggleTimerIsRunning = () => {
+    setTimerIsRunning(!timerIsRunning);
+  };
+
   return (
-    <div>
-      <div className="Timer_display">
-        <div className="button_container text_stroke">
-          <HandleTimerLogic
-            mode={timerMode}
-            timerIsRunning={timerIsRunning}
-            focusTime={focusTime}
-            breakTime={breakTime}
-          />
-          <h1>{timerMode.toLowerCase()}</h1>
+    <div className="Timer">
+      <div className="Timer_display" onClick={toggleTimerIsRunning}>
+        <div className="button_container stroke_texto_h2_primario">
+          <p className="timer_visor">
+            <HandleTimerLogic
+              mode={timerMode}
+              timerIsRunning={timerIsRunning}
+              focusTime={focusTime}
+              breakTime={breakTime}
+            />
+          </p>
+          <h1 className="timer_mode stroke_texto_h2_secundario">
+            {timerMode.toLowerCase()}
+          </h1>
         </div>
       </div>
-      <p
+      <button
+        className="btn-timer-change-mode"
         onClick={() => setTimerMode(timerMode === "Break" ? "Focus" : "Break")}
       >
-        mudar modo
-      </p>
+        change mode
+      </button>
     </div>
   );
 };

@@ -22,8 +22,35 @@
   --button-secondary-text: #d0e6ff;
   --button-secondary-text-stroke: #4d82bd;
 
+  --button-terciary: #1bcc68;
+  --button-terciary-stroke: #0f7a3d;
+  --button-terciary-text: #106e39;
+  --button-terciary-text-stroke: #0f7a3d;
+
   /* buttons on hover*/
   --button-primary-hover: #ee6055;
-
   --button-secondary-hover: #bbdbff;
+
+  /* transitions */
+  --transition-slow: all 0.5s ease-in-out;
+  --transition-fast: all 0.2s ease-in-out;
+}
+
+.stroke_texto_h1_primario {
+  -webkit-text-stroke: 2px var(--text-stroke-primary);
+  color: var(--text-primary);
+}
+
+.stroke_texto_h1_secundario {
+  -webkit-text-stroke: 2px var(--text-stroke-secondary);
+  color: var(--text-secondary);
+}
+.stroke_texto_h2_primario {
+  -webkit-text-stroke: 1px var(--text-stroke-primary);
+  color: var(--text-primary);
+}
+
+.stroke_texto_h2_secundario {
+  -webkit-text-stroke: 1px var(--text-stroke-secondary);
+  color: var(--text-secondary);
 }

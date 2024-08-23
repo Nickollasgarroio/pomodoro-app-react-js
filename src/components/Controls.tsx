@@ -1,29 +1,33 @@
-// src/components/Controls.tsx
-
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
-import "../styles/Control.css"; // Adicione o arquivo CSS para o Controls
+import "../styles/Controls.css"; // Add the CSS file for Controls
+import { TimerContext } from "../App"; // Make sure to import TimerContext
 
 interface ControlsProps {
-  timerIsRunning: boolean;
-  toggleTimerIsRunning: () => void;
   toggleSettings: (event: React.MouseEvent) => void;
 }
 
-export const Controls: React.FC<ControlsProps> = ({
-  timerIsRunning,
-  toggleTimerIsRunning,
-  toggleSettings,
-}) => {
+export const Controls: React.FC<ControlsProps> = ({ toggleSettings }) => {
+  const timerContext = useContext(TimerContext);
+
+  if (!timerContext) return null; // Handle the case where the context might be null
+
+  const { timerIsRunning, setTimerIsRunning } = timerContext;
+
+  // Define the function inside the component
+  const toggleTimerIsRunning = () => {
+    setTimerIsRunning(!timerIsRunning);
+  };
+
   return (
     <div className="Controls">
       <button className="btn-primary" onClick={toggleTimerIsRunning}>
-        <p>{timerIsRunning ? "pause" : "start"}</p>
+        <p>{timerIsRunning ? "Pause" : "Start"}</p>
       </button>
       <button className="btn-secondary" onClick={toggleSettings}>
         <FontAwesomeIcon icon={faGear} className="icon" />
-        <p>settings</p>
+        <p>Settings</p>
       </button>
     </div>
   );
