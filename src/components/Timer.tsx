@@ -16,6 +16,7 @@ export const Timer = () => {
     setTimerIsRunning,
     timerMode,
     setTimerMode,
+    handleSounds,
   } = timerContext;
 
   // Função para alternar o estado de timerIsRunning
@@ -26,7 +27,10 @@ export const Timer = () => {
   return (
     <div className="Timer">
       <div className="Timer_display" onClick={toggleTimerIsRunning}>
-        <div className="button_container stroke_texto_h2_primario">
+        <div
+          className="button_container stroke_texto_h2_primario"
+          onClick={() => handleSounds("click")}
+        >
           <p className="timer_visor">
             <HandleTimerLogic
               mode={timerMode}
@@ -42,7 +46,9 @@ export const Timer = () => {
       </div>
       <button
         className="btn-timer-change-mode"
-        onClick={() => setTimerMode(timerMode === "Break" ? "Focus" : "Break")}
+        onClick={() => {
+          setTimerMode(timerMode === "Break" ? "Focus" : "Break");
+        }}
       >
         change mode
       </button>

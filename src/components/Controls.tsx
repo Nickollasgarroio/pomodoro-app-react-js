@@ -22,10 +22,10 @@ export const Controls: React.FC<ControlsProps> = ({ toggleSettings }) => {
 
   return (
     <div className="Controls">
-      <button className="btn-primary" onClick={toggleTimerIsRunning}>
+      <button className="controls-btn-primary" onClick={toggleTimerIsRunning}>
         <p>{timerIsRunning ? "Pause" : "Start"}</p>
       </button>
-      <button className="btn-secondary" onClick={toggleSettings}>
+      <button className="controls-btn-secondary" onClick={toggleSettings}>
         <FontAwesomeIcon icon={faGear} className="icon" />
         <p>Settings</p>
       </button>
