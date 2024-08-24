@@ -72,15 +72,7 @@ function App() {
         <Header />
         <Timer />
         <Controls toggleSettings={handleShowSettings} />
-        {settingsVisible && (
-          <Settings
-            focusTime={focusTime}
-            setFocusTime={setFocusTime}
-            breakTime={breakTime}
-            setBreakTime={setBreakTime}
-            handleTimeChange={handleTimeChange}
-          />
-        )}
+        {settingsVisible && <Settings />}
       </div>
     </TimerContext.Provider>
   );

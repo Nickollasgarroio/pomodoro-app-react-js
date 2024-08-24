@@ -13,7 +13,7 @@ export const Controls: React.FC<ControlsProps> = ({ toggleSettings }) => {
 
   if (!timerContext) return null; // Handle the case where the context might be null
 
-  const { timerIsRunning, setTimerIsRunning } = timerContext;
+  const { timerIsRunning, setTimerIsRunning, handleSounds } = timerContext;
 
   // Define the function inside the component
   const toggleTimerIsRunning = () => {
@@ -22,10 +22,22 @@ export const Controls: React.FC<ControlsProps> = ({ toggleSettings }) => {
 
   return (
     <div className="Controls">
-      <button className="controls-btn-primary" onClick={toggleTimerIsRunning}>
+      <button
+        className="controls-btn-primary"
+        onClick={() => {
+          toggleTimerIsRunning();
+          handleSounds("click");
+        }}
+      >
         <p>{timerIsRunning ? "Pause" : "Start"}</p>
       </button>
-      <button className="controls-btn-secondary" onClick={toggleSettings}>
+      <button
+        className="controls-btn-secondary"
+        onClick={(e) => {
+          toggleSettings(e);
+          handleSounds("click");
+        }}
+      >
         <FontAwesomeIcon icon={faGear} className="icon" />
         <p>Settings</p>
       </button>

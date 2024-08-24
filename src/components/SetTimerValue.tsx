@@ -38,24 +38,24 @@ export const SetTimerValue: React.FC<Props> = ({
       <div className="set_timer_btn">
         <h2>Focus Time</h2>
         <div className="set_timer_btn_container">
-          <button onClick={handleFocusValueIncrease}>
-            <p>+</p>
-          </button>
-          {focusTime}
           <button onClick={handleFocusValueDecrease}>
             <p>-</p>
+          </button>
+          {focusTime}
+          <button onClick={handleFocusValueIncrease}>
+            <p>+</p>
           </button>
         </div>
       </div>
       <div className="set_timer_btn">
         <h2>Break Time</h2>
         <div className="set_timer_btn_container">
-          <button onClick={handleBreakValueIncrease}>
-            <p>+</p>
-          </button>
-          {breakTime}
           <button onClick={handleBreakValueDecrease}>
             <p>-</p>
+          </button>
+          {breakTime}
+          <button onClick={handleBreakValueIncrease}>
+            <p>+</p>
           </button>
         </div>
       </div>

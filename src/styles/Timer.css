@@ -34,9 +34,21 @@
 }
 .timer_visor {
   font-size: 6rem;
-  rotate: 3deg;
+  rotate: 0deg;
+}
+.timer_is_running {
+  animation: rotateAnimation 0.5s infinite alternate ease-in-out;
 }
 
+/* Definição da Animação */
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-5deg);
+  }
+}
 .timer_mode {
   font-size: 4rem;
   rotate: -5deg;

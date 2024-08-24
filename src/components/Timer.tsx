@@ -31,15 +31,21 @@ export const Timer = () => {
           className="button_container stroke_texto_h2_primario"
           onClick={() => handleSounds("click")}
         >
-          <p className="timer_visor">
+          <p
+            className={`timer_visor ${
+              timerIsRunning ? "timer_is_running" : ""
+            }`}
+          >
             <HandleTimerLogic
               mode={timerMode}
+              setTimerMode={setTimerMode}
               timerIsRunning={timerIsRunning}
               focusTime={focusTime}
               breakTime={breakTime}
+              setTimerIsRunning={setTimerIsRunning}
             />
           </p>
-          <h1 className="timer_mode stroke_texto_h2_secundario">
+          <h1 className={"stroke_texto_h2_secundario"}>
             {timerMode.toLowerCase()}
           </h1>
         </div>
@@ -48,6 +54,7 @@ export const Timer = () => {
         className="btn-timer-change-mode"
         onClick={() => {
           setTimerMode(timerMode === "Break" ? "Focus" : "Break");
+          handleSounds("click");
         }}
       >
         change mode

@@ -5,6 +5,8 @@ interface TimerProps {
   timerIsRunning: boolean;
   focusTime: number; // tempo de foco em minutos
   breakTime: number; // tempo de intervalo em minutos
+  setTimerMode: (mode: "Break" | "Focus") => void;
+  setTimerIsRunning: (isRunning: boolean) => void;
 }
 
 export const HandleTimerLogic: React.FC<TimerProps> = ({
@@ -12,6 +14,8 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
   timerIsRunning,
   focusTime,
   breakTime,
+  setTimerMode,
+  setTimerIsRunning,
 }) => {
   const [timeLeft, setTimeLeft] = useState<number>(focusTime * 60 * 1000);
 
@@ -32,6 +36,9 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
         setTimeLeft((prevTime) => {
           if (prevTime <= 1000) {
             clearInterval(intervalId!);
+            setTimerMode(mode === "Break" ? "Focus" : "Break");
+            setTimerIsRunning(false);
+
             return 0;
           }
           return prevTime - 1000;
@@ -45,7 +52,7 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
         clearInterval(intervalId);
       }
     };
-  }, [timerIsRunning]);
+  }, [timerIsRunning, mode, setTimerMode, setTimerIsRunning]);
 
   // Formatação do tempo restante em MM:SS
   const minutes = Math.floor(timeLeft / 1000 / 60);

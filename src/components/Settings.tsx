@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SetTimerValue } from "./SetTimerValue";
+import { TimerContext } from "../App"; // Adjust the import path as needed
 import "../styles/Settings.css";
 
-interface SettingsProps {
-  focusTime: number;
-  setFocusTime: (time: number) => void;
-  breakTime: number;
-  setBreakTime: (time: number) => void;
-  handleTimeChange: () => void;
-}
+export const Settings: React.FC = () => {
+  const timerContext = useContext(TimerContext);
 
-export const Settings: React.FC<SettingsProps> = ({
-  focusTime,
-  setFocusTime,
-  breakTime,
-  setBreakTime,
-  handleTimeChange,
-}) => {
+  if (!timerContext) return null; // Handle the case where the context might be null
+
+  const {
+    focusTime,
+    setFocusTime,
+    breakTime,
+    setBreakTime,
+    handleTimeChange,
+    handleSounds,
+  } = timerContext;
+
   return (
     <div className="Settings_container">
       <div className="Settings_content">
@@ -24,10 +24,12 @@ export const Settings: React.FC<SettingsProps> = ({
           setFocusTime={(time: number) => {
             setFocusTime(time);
             handleTimeChange();
+            handleSounds("click"); // Example of using handleSounds
           }}
           setBreakTime={(time: number) => {
             setBreakTime(time);
             handleTimeChange();
+            handleSounds("click"); // Example of using handleSounds
           }}
           focusTime={focusTime}
           breakTime={breakTime}

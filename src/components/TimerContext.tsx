@@ -8,6 +8,8 @@ interface TimerContextProps {
   breakTime: number;
   setBreakTime: (time: number) => void;
   handleTimeChange: () => void;
+  handleSounds: (action: string) => void;
+  setSettingsVisible: (isVisible: boolean) => void;
 }
 
 const TimerContext = createContext<TimerContextProps | null>(null);
