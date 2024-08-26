@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TimerContext } from "../App";
 
 interface TimerProps {
   mode: "Break" | "Focus";
@@ -17,20 +18,21 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
   setTimerMode,
   setTimerIsRunning,
 }) => {
-  const [timeLeft, setTimeLeft] = useState<number>(focusTime * 60 * 1000);
+  const timerContext = useContext(TimerContext);
+
+  const [timeLeft, setTimeLeft] = useState<number>(
+    mode === "Break" ? breakTime * 60 * 1000 : focusTime * 60 * 1000
+  );
 
   useEffect(() => {
-    // Atualiza o tempo restante quando o modo ou os tempos mudam
     setTimeLeft(
       mode === "Break" ? breakTime * 60 * 1000 : focusTime * 60 * 1000
     );
   }, [mode, focusTime, breakTime]);
 
   useEffect(() => {
-    // Limpa o intervalo anterior se existir
     let intervalId: NodeJS.Timeout | null = null;
 
-    // Se o temporizador estiver rodando, configura o intervalo
     if (timerIsRunning) {
       intervalId = setInterval(() => {
         setTimeLeft((prevTime) => {
@@ -38,6 +40,9 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
             clearInterval(intervalId!);
             setTimerMode(mode === "Break" ? "Focus" : "Break");
             setTimerIsRunning(false);
+            if (timerContext) {
+              timerContext.handleSounds("end");
+            }
 
             return 0;
           }
@@ -46,13 +51,14 @@ export const HandleTimerLogic: React.FC<TimerProps> = ({
       }, 1000);
     }
 
-    // Limpa o intervalo quando o temporizador para ou o componente é desmontado
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
     };
-  }, [timerIsRunning, mode, setTimerMode, setTimerIsRunning]);
+  }, [timerIsRunning, mode, setTimerMode, setTimerIsRunning, timerContext]);
+
+  if (!timerContext) return null;
 
   // Formatação do tempo restante em MM:SS
   const minutes = Math.floor(timeLeft / 1000 / 60);

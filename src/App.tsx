@@ -3,10 +3,8 @@ import { Timer } from "./components/Timer";
 import { Controls } from "./components/Controls";
 import { Settings } from "./components/Settings";
 import { Header } from "./components/Header";
+import { handleSounds } from "./components/Sounds";
 import "./styles/App.css";
-
-import sound_click from "./assets/sounds/click.wav";
-import sound_alarm from "./assets/sounds/alarm_sound.wav";
 
 interface TimerContextProps {
   focusTime: number;
@@ -36,21 +34,6 @@ function App() {
 
   const handleShowSettings = () => {
     setSettingsVisible(!settingsVisible);
-  };
-
-  const handleSounds = (action: string) => {
-    const clickSound = new Audio(sound_click);
-    const alarmSound = new Audio(sound_alarm);
-    switch (action) {
-      case "click":
-        clickSound.play();
-        break;
-      case "alarm":
-        alarmSound.play();
-        break;
-      default:
-        break;
-    }
   };
 
   return (
