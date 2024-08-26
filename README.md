@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+**Project Name:** PomoPal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Description:** A web-based Pomodoro-type application built with React, designed to help you focus and stay on track.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Customizable focus and break times
+- Automatic timer switching between focus and break modes
+- Alarm sound notification when timer reaches zero
+- Settings panel to adjust timer settings
+- Header component displaying current timer mode and time remaining
 
-## Expanding the ESLint configuration
+## Components
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `App.tsx`: Main application component
+- `Timer.tsx`: Timer component displaying current time remaining
+- `Controls.tsx`: Controls component allowing users to start, stop, and reset the timer
+- `Settings.tsx`: Settings component allowing users to adjust timer settings
+- `Header.tsx`: Header component displaying current timer mode and time remaining
+- `Sounds.tsx`: Sounds component handling alarm sound notifications
 
-- Configure the top-level `parserOptions` property like this:
+## Libraries and Dependencies
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- React
+- TypeScript
+- ESLint
+- React Hooks
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage/Examples
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Set your focus and break times using the settings panel
+2. Click the "Start" button to begin the timer
+3. The timer will automatically switch between focus and break modes
+4. When the timer reaches zero, an alarm sound will be played
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License
+
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
+
+## Acknowledgements
+
+- [Nickollas Giordano Arroio] for creating the initial project structure and components
